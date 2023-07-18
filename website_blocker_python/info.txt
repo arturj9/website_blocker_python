@@ -1,0 +1,5 @@
+Mac/Linux:
+"/etc/hosts"
+
+Windows:
+r"C:\Windows\System32\drivers\etc\hosts"

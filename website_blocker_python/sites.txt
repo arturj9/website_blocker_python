@@ -1,1 +1,2 @@
-chat.openai.com
+tim.com
+hello.com

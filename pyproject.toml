@@ -8,6 +8,7 @@ packages = [{include = "website_blocker_python"}]
 
 [tool.poetry.dependencies]
 python = "^3.10"
+tinydb = "^4.8.0"
 
 
 [build-system]

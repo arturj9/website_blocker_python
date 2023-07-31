@@ -7,7 +7,7 @@ class Site:
         self.__set_is_blocked__()
 
     def __set_is_blocked__(self: object) -> None:
-        self.__is_blocked: bool = self.verifica_is_blocked()
+        self.__is_blocked = self.verifica_is_blocked()
 
     def __str__(self) -> str:
         return f"url: {self.__url}, is_blocked: {self.__is_blocked};"
@@ -26,16 +26,15 @@ class Site:
             lines = hostsfile.readlines()
             hostsfile.seek(0)
             for line in lines:
-                if self.__url in line:
+                if self.__url == str(line.replace("\n", "")[10:]):
                     return True
         return False
 
     def bloquear(self: object) -> bool:
         with open(Host().get_path(), "r+") as hostsfile:
             hosts_content = hostsfile.read()
-            if self.__url not in hosts_content:
+            if not self.get_is_blocked():
                 hostsfile.write(Host().get_redirect() + " " + self.__url + "\n")
-            self.__set_is_blocked__()
             return True
         return False
 
@@ -44,10 +43,9 @@ class Site:
             lines = hostsfile.readlines()
             hostsfile.seek(0)
             for line in lines:
-                if not self.__url in line:
+                if not self.__url == line.replace("\n", "")[10:]:
                     hostsfile.write(line)
             hostsfile.truncate()
-            self.__set_is_blocked__()
             return True
         return False
 
